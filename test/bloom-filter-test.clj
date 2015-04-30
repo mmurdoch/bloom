@@ -6,10 +6,7 @@
 (use 'clojure.test)
 (use 'bloom.filter)
 
-(deftest test-filter-bit
-  (is (false? (filter-bit (filter-init 1) 0)))
-  (is (true? (filter-bit (filter-set-bit-on (filter-init 1) 0) 0))))
-
+; Interface Tests
 (deftest test-filter-bit-count
   (is (= 2 (filter-bit-count (filter-init 2))))
   (is (= 19 (filter-bit-count (filter-init 19)))))
@@ -19,6 +16,13 @@
   (is (= "00" (filter-state (filter-init 2)))))
 
 (deftest test-filter-add
-  (is (= "00000000000000000000000000000000" (filter-state (filter-init 32)))))
+  (is (= "00000000000000000000000000000001" (filter-state (filter-add-hash (filter-init 32) 1)))))
+
+; Implementation Tests
+(use 'bloom.impl.filter-impl)
+
+(deftest test-filter-bit
+  (is (false? (filter-bit (filter-init 1) 0)))
+  (is (true? (filter-bit (filter-set-bit-on (filter-init 1) 0) 0))))
 
 (run-tests)

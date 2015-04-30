@@ -1,4 +1,5 @@
 (ns bloom.filter)
+(use 'bloom.impl.filter-impl)
 
 (defn filter-init [bit-count]
   "initializes a bloom filter with the specified number of bits"
@@ -15,12 +16,8 @@
   "turns on the nth bit in the specified filter"
   (assoc filter n true))
 
-(defn filter-bit [filter n]
-  "returns the state of the nth bit in the specified filter"
-  (nth filter n))
-
-(defn- filter-add-state-bit [filter n state]
-  )
+(defn filter-add-hash [filter hash]
+  (filter-set-bit-on filter 0))
 
 (defn filter-state [filter]
   "returns the state of the specified filter"
