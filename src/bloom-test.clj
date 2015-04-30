@@ -1,3 +1,8 @@
+; TODO Convert filter representation to bits
+; TODO Use several hashes (perhaps single hash split)
+; TODO Add function for adding a word
+; TODO Add function for checking for word existence
+; TODO Add function to check accuracy
 (use 'clojure.test)
 (use 'bloom)
 
@@ -7,12 +12,5 @@
 
 (deftest test-filter-state
   (is (= [false] (filter-state (filter-init 1)))))
-
-; Large array of bits
-; Dictionary of words
-; Several hashes
-; Function for adding a word
-; Function for checking for existence
-; Produce n random 5 letter words and check for percentage false positives
 
 (run-tests)
