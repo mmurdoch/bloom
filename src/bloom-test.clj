@@ -2,8 +2,11 @@
 (use 'bloom)
 
 (deftest test-filter-bit-count
-  (is (= 2 (filter-bit-count (init-filter 2))))
-  (is (= 19 (filter-bit-count (init-filter 19)))))
+  (is (= 2 (filter-bit-count (filter-init 2))))
+  (is (= 19 (filter-bit-count (filter-init 19)))))
+
+(deftest test-filter-state
+  (is (= [false] (filter-state (filter-init 1)))))
 
 ; Large array of bits
 ; Dictionary of words
