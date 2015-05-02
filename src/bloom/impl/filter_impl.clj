@@ -14,10 +14,12 @@
 (defn filter-add-hash [filter hash]
   "Adds a hash (vector of ints) to the specified filter"
   ; TODO Add argument checking
-  ; TODO Hash and filter must both be vectors of ints
-  ; TODO Hash length must equal filter length
-  ; TODO Iterate over both hash and filter and bit-or each pair of integers
+  ; TODO Filter must both be vectors of ints
+  ; TODO Hash value must be no greater than the number of bits in the filter
   (loop [n (count filter) filter filter]
     (if (zero? n)
       filter
-      (recur (dec n) (assoc filter (- n 1) (bit-or (nth filter (- n 1)) (nth hash (- n 1))))))))
+      (recur
+        (dec n)
+        (assoc filter (- n 1)
+          (bit-or (nth filter (- n 1)) (nth hash (- n 1))))))))

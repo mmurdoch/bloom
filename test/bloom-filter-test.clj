@@ -35,6 +35,6 @@
 
 (deftest test-filter-add-hash
   (is (= "00000000000000000000000000000001" (filter-state (filter-add-hash (filter-init 32) [1]))))
-  (is (= "00000000000000000000000000000101" (filter-state (filter-add-hash (filter-init 32) [5])))))
+  (is (= "00000000000000000000000000010000" (filter-state (filter-add-hash (filter-init 32) [5])))))
 
 (run-tests)
