@@ -11,15 +11,10 @@
           (if (true? (bit-test filter-int (- n 1)))
             "1" "0"))))))
 
-(defn filter-add-hash [filter hash]
-  "Adds a hash (vector of ints) to the specified filter"
+(defn filter-set-bit [filter bit-position]
+  "Sets the bit at bit-position of the specified filter"
   ; TODO Add argument checking
   ; TODO Filter must both be vectors of ints
-  ; TODO Hash value must be no greater than the number of bits in the filter
-  (loop [n (count filter) filter filter]
-    (if (zero? n)
-      filter
-      (recur
-        (dec n)
-        (assoc filter (- n 1)
-          (bit-or (nth filter (- n 1)) (nth hash (- n 1))))))))
+  ; TODO Bit-position must be no greater than the number of bits in the filter
+  (assoc filter 0
+    (bit-set (nth filter 0) bit-position)))

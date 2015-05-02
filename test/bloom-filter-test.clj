@@ -33,8 +33,8 @@
   (is (= "00000000000000000000000000000010" (filter-int-state 2)))
   (is (= "10000000000000000000000000000000" (filter-int-state 2147483648))))
 
-(deftest test-filter-add-hash
-  (is (= "00000000000000000000000000000001" (filter-state (filter-add-hash (filter-init 32) [1]))))
-  (is (= "00000000000000000000000000010000" (filter-state (filter-add-hash (filter-init 32) [5])))))
+(deftest test-filter-set-bit
+  (is (= "00000000000000000000000000000001" (filter-state (filter-set-bit (filter-init 32) 0))))
+  (is (= "00000000000000000000000000010000" (filter-state (filter-set-bit (filter-init 32) 4)))))
 
 (run-tests)
