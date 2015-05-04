@@ -29,6 +29,18 @@
   (is (= "00000010" (filter-byte-state 2)))
   (is (= "10000000" (filter-byte-state 128))))
 
+(deftest test-filter-set-bit-less-than-zero-fails
+  (try
+    (filter-set-bit bf -1)
+    (is (true? false))
+    (catch IllegalArgumentException e)))
+
+(deftest test-filter-set-bit-greater-than-count-fails
+  (try
+    (filter-set-bit bf 32)
+    (is (true? false))
+    (catch IllegalArgumentException e)))
+
 (deftest test-filter-set-bit
   (is (= "00000000000000000000000000000001" (filter-state (filter-set-bit bf 0))))
   (is (= "00000000000000000000000000010000" (filter-state (filter-set-bit bf 4)))))
