@@ -1,14 +1,17 @@
 (ns bloom.impl.filter-impl)
 
-(defn filter-int-state [filter-int]
-  "Returns a string representation of the state of a single int within a filter"
-  (loop [n 32 state ""]
+(defn bits-per-byte []
+  8)
+
+(defn filter-byte-state [filter-byte]
+  "Returns a string representation of the state of a single byte within a filter"
+  (loop [n (bits-per-byte) state ""]
     (if (zero? n)
       state
       (recur
         (dec n)
         (str state
-          (if (true? (bit-test filter-int (- n 1)))
+          (if (true? (bit-test filter-byte (- n 1)))
             "1" "0"))))))
 
 (defn filter-set-bit [filter bit-position]

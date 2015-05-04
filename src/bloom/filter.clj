@@ -1,20 +1,18 @@
 (ns bloom.filter)
 (use 'bloom.impl.filter-impl)
 
-(defn filter-init [bit-count]
+(defn filter-init [byte-count]
   "initializes a bloom filter with the specified number of bits"
-  (if (<= bit-count 0)
+  (if (<= byte-count 0)
     (throw (IllegalArgumentException. "bit-count must be greater than zero")))
-  (if (not= (rem bit-count 32) 0)
-    (throw (IllegalArgumentException. "bit-count must be multiple of 32")))
-  (loop [n bit-count filter []]
+  (loop [n byte-count filter []]
     (if (zero? n)
       filter
-      (recur (- n 32) (conj filter (int 0))))))
+      (recur (dec n) (conj filter (byte 0))))))
 
 (defn filter-bit-count [filter]
   "returns the number of bits in the specified filter"
-  (* (count filter) 32))
+  (* (count filter) (bits-per-byte)))
 
 (defn filter-state [filter]
   "returns the state of the specified filter"
@@ -23,4 +21,4 @@
       state
       (recur (dec n)
         (str state
-          (filter-int-state (nth filter n)))))))
+          (filter-byte-state (nth filter n)))))))
