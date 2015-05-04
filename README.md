@@ -5,4 +5,4 @@
     (use 'bloom.filter)
 
     ; Create a 256 bit (32 byte) Bloom filter
-    (filter-init 32)
+    (def bf (filter-init 32))

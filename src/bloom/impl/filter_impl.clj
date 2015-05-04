@@ -17,7 +17,7 @@
 (defn filter-set-bit [filter bit-position]
   "Sets the bit at bit-position of the specified filter"
   ; TODO Add argument checking
-  ; TODO Filter must both be vectors of ints
+  ; TODO Filter must be a vectors of bytes
   ; TODO Bit-position must be no greater than the number of bits in the filter
   (assoc filter 0
     (bit-set (nth filter 0) bit-position)))
